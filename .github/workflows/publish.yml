@@ -32,7 +32,8 @@ jobs:
             "lmerTest",
             "emmeans",
             "multcomp",
-            "nlraa"
+            "nlraa",
+            "corrplot"
           ))
         shell: Rscript {0}
 
