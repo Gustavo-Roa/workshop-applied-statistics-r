@@ -58,6 +58,7 @@ library(lme4)
 
 # Obtain Kenward-Roger tests
 library(lmerTest)
+library(pbkrtest)
 
 # Estimate marginal means
 library(emmeans)
