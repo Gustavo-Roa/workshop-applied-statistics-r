@@ -3131,6 +3131,34 @@
       "Maintainer": "Torsten Hothorn <Torsten.Hothorn@R-project.org>",
       "Repository": "CRAN"
     },
+    "multcompView": {
+      "Package": "multcompView",
+      "Version": "0.1-12",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Visualizations of Paired Comparisons",
+      "Authors@R": "c( person(\"Spencer\", \"Graves\", role = \"aut\"), person(\"Hans-Peter\", \"Piepho\", role = \"aut\"), person(\"Luciano\", \"Selzer\", email = \"luciano.selzer@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Sundar\", \"Dorai-Raj\", role = \"ctb\"))",
+      "Description": "Convert a logical vector or a vector of p-values or a correlation, difference, or distance matrix into a display identifying the pairs for which the differences were not significantly different. Designed for use in conjunction with the output of functions like TukeyHSD, dist (stats), simint, simtest, csimint, csimtest (multcomp), friedmanmc, kruskalmc (pgirmess).",
+      "License": "GPL-2",
+      "Imports": [
+        "grid"
+      ],
+      "Suggests": [
+        "multcomp",
+        "pgirmess",
+        "MASS",
+        "testthat (>= 3.0.0)"
+      ],
+      "RoxygenNote": "7.3.3",
+      "URL": "https://lselzer.github.io/multcompview/",
+      "BugReports": "https://github.com/lselzer/multcompview/issues",
+      "Config/testthat/edition": "3",
+      "NeedsCompilation": "no",
+      "Author": "Spencer Graves [aut], Hans-Peter Piepho [aut], Luciano Selzer [aut, cre], Sundar Dorai-Raj [ctb]",
+      "Maintainer": "Luciano Selzer <luciano.selzer@gmail.com>",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
+    },
     "mvtnorm": {
       "Package": "mvtnorm",
       "Version": "1.4-2",

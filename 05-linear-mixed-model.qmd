@@ -64,6 +64,7 @@ library(emmeans)
 
 # Create compact letter displays
 library(multcomp)
+library(multcompView)
 ```
 
 # Load the data
