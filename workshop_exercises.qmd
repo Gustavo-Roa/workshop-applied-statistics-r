@@ -6,24 +6,6 @@ format:
     self-contained: true
 ---
 
-# Install Packages
-```{r}
-# Packages needed for the workshop
-packages <- c(
-  "tidyverse", "readxl", "lme4", "lmerTest",
-  "emmeans", "multcomp", "nlraa"
-)
-
-# Install missing packages
-install.packages(
-  packages[!packages %in% rownames(installed.packages())]
-)
-
-# Load packages
-lapply(packages, library, character.only = TRUE)
-```
-
-
 # Load packages
 
 ```{r}
@@ -55,13 +37,12 @@ Use `summary()` to describe `grain_yield_Mg_ha`.
 
 ```{r}
 # Summarize grain yield
-summary(AllData$______________)
+summary(______________)
 ```
 
 ## Exercise 1.2: Histogram
 
 Create a histogram of grain yield.
-- `grain_yield_Mg_ha`
 
 ```{r}
 # Create a histogram
@@ -80,8 +61,7 @@ ggplot(
 ## Exercise 1.3: Box plot
 
 Create a box plot comparing grain yield among sulfur rates.
-- `grain_yield_Mg_ha`
-- `S_rate_kg_ha`
+
 ```{r}
 # Create a box plot
 ggplot(
@@ -144,12 +124,11 @@ ggplot(
 
 ## Exercise 2.3: Interpret the relationship
 
-Use your correlation coefficient and scatterplot to answer:
+Answer:
 
-- Is the relationship positive or negative?
-- How strong is the association?
-- Does the scatterplot suggest a linear relationship?
-- Are there any potentially unusual observations?
+1. Is the relationship positive or negative?
+2. How strong is the association?
+3. Does the relationship appear linear?
 
 # Section 3: Linear Regression
 
@@ -167,10 +146,10 @@ model_ex <- lm(
 summary(model_ex)
 ```
 
-## Exercise 3.2: Create the regression plot
+## Exercise 3.2: Add the regression line
 
 ```{r}
-# Create a scatterplot and add the fitted regression model
+# Plot the data and fitted regression line
 ggplot(
   AllData,
   aes(
@@ -183,20 +162,6 @@ ggplot(
     method = "lm",
     se = TRUE
   ) +
-  stat_poly_eq(
-    aes(
-      label = paste(
-        after_stat(eq.label),
-        after_stat(rr.label),
-        sep = "*\", \"*"
-      )
-    ),
-    formula = y ~ x,
-    coef.digits = 3,
-    rr.digits = 2,
-    parse = TRUE,
-    size = 5
-  ) +
   labs(
     x = "____________",
     y = "____________"
@@ -206,21 +171,18 @@ ggplot(
 
 ## Exercise 3.3: Interpret the model
 
-Use the model output and graph to answer:
+Answer:
 
-1.  What is the estimated slope?
-2.  Is the relationship positive or negative?
-3.  What does the slope mean in this context?
-4.  What is the P-value for the slope?
-5.  What is the $R^2$?
+1. What does the slope tell us?
+2. What is the P-value for the slope?
+3. What does $R^2$ tell us?
+4. Does the model provide evidence of a linear relationship?
 
 # Section 4: ANOVA
 
 ## Exercise 4.1: Fit the ANOVA
 
 Use grain yield as the response and sulfur rate as the treatment.
-- `grain_yield_Mg_ha`
-- `S_rate_kg_ha`
 
 ```{r}
 # Convert sulfur rate to a treatment factor
@@ -238,7 +200,6 @@ summary(model_ex)
 ## Exercise 4.2: Compare treatment means
 
 Use `emmeans()` and Tukey's method.
-- `S_rate_kg_ha`
 
 ```{r}
 # Estimate treatment means
@@ -263,9 +224,64 @@ Answer:
 3. Which treatment pairs differ?
 4. Which sulfur rate has the highest estimated mean?
 
+# Section 5: Linear Mixed Model
+
+## Exercise 5.1: Fit a linear mixed model
+
+Treat sulfur rate as a fixed effect and block as a random effect.
+
+```{r}
+# Fit the linear mixed model
+model_ex <- lmer(
+  ____________ ~ ____________ + (1 | ____________),
+  data = AllData,
+  REML = TRUE
+)
+
+# ANOVA using Kenward-Roger degrees of freedom
+anova(
+  model_ex,
+  ddf = "Kenward-Roger"
+)
+```
+
+## Exercise 5.2: Estimate treatment means
+
+```{r}
+# Estimate marginal means
+means_ex <- emmeans(
+  model_ex,
+  ~ ____________,
+  lmer.df = "kenward-roger"
+)
+
+means_ex
+```
+
+## Exercise 5.3: Compare treatment means
+
+```{r}
+# Compare treatment means using Tukey adjustment
+pairs(
+  means_ex,
+  adjust = "tukey"
+)
+```
+
+## Exercise 5.4: Interpret the model
+
+Answer:
+
+1. Why is block included as a random effect?
+2. What is the P-value for sulfur rate?
+3. How does the mixed model differ from the one-way ANOVA?
+4. Which treatment has the highest estimated mean?
+
 # Section 6: Nonlinear Regression
 
 For this section, sulfur rate is treated as a continuous numerical variable rather than a treatment factor.
+
+## Exercise 6.1: Prepare the data
 
 ```{r}
 # Create a numeric sulfur rate
@@ -274,11 +290,9 @@ AllData$S_rate_numeric <- as.numeric(
 )
 ```
 
-## Exercise 6.1: Fit a linear-plateau model
+## Exercise 6.2: Fit a linear-plateau model
 
 Use grain yield as the response and sulfur rate as the explanatory variable.
-- `grain_yield_Mg_ha`
-- `S_rate_kg_ha`
 
 ```{r}
 # Fit the linear-plateau model
@@ -295,7 +309,7 @@ model_LP_ex <- nls(
 summary(model_LP_ex)
 ```
 
-## Exercise 6.2: Fit a quadratic-plateau model
+## Exercise 6.3: Fit a quadratic-plateau model
 
 ```{r}
 # Fit the quadratic-plateau model
@@ -312,11 +326,10 @@ model_QP_ex <- nls(
 summary(model_QP_ex)
 ```
 
-## Exercise 6.3: Compare the models
+## Exercise 6.4: Compare the models
 
 Use AIC to compare the linear-plateau and quadratic-plateau models.
-- `model_LP_ex`
-- `model_QP_ex`
+
 ```{r}
 # Compare models using AIC
 AIC(
@@ -325,7 +338,66 @@ AIC(
 )
 ```
 
-## Exercise 6.4: Interpret the results
+## Exercise 6.5: Plot the fitted models
+
+Create a graph showing the observations and both fitted curves.
+
+```{r}
+# Create a sequence of sulfur rates
+new_data <- data.frame(
+  S_rate_numeric = seq(
+    min(AllData$S_rate_numeric),
+    max(AllData$S_rate_numeric),
+    length.out = 50
+  )
+)
+
+# Predict from the linear-plateau model
+new_data$LP <- predict(
+  ____________,
+  newdata = new_data
+)
+
+# Predict from the quadratic-plateau model
+new_data$QP <- predict(
+  ____________,
+  newdata = new_data
+)
+
+# Plot observations and fitted curves
+ggplot() +
+  geom_point(
+    data = AllData,
+    aes(
+      x = ____________,
+      y = ____________
+    )
+  ) +
+  geom_line(
+    data = new_data,
+    aes(
+      x = S_rate_numeric,
+      y = LP,
+      linetype = "Linear-Plateau"
+    )
+  ) +
+  geom_line(
+    data = new_data,
+    aes(
+      x = S_rate_numeric,
+      y = QP,
+      linetype = "Quadratic-Plateau"
+    )
+  ) +
+  labs(
+    x = "Sulfur rate (kg ha⁻¹)",
+    y = "Grain yield (Mg ha⁻¹)",
+    linetype = "Model"
+  ) +
+  theme_bw()
+```
+
+## Exercise 6.6: Interpret the results
 
 Answer:
 
