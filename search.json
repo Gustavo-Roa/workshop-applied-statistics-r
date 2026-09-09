@@ -607,6 +607,13 @@
     "href": "exercises.html#posit-cloud",
     "title": "Exercise Guidelines",
     "section": "Posit Cloud",
-    "text": "Posit Cloud\nYou can complete the workshop directly in Posit Cloud without installing R or RStudio.\nOpen the workshop in Posit Cloud\nAfter opening the project:\n\nSign in to Posit Cloud or create a free account.\nOpen the workshop project.\nSelect Save a Permanent Copy to create your own copy.\nWork through the workshop sections in order.\nComplete the exercises in workshop_exercises.qmd. ## Workshop Order\n\nWork through the exercises in this order:\nData Exploration → Correlation → Linear Regression → ANOVA → Linear Mixed Model → Nonlinear Regression\nFocus on understanding what the model does, why it is appropriate, and how to interpret the results, rather than memorizing the R code."
+    "text": "Posit Cloud\nYou can complete the workshop directly in Posit Cloud without installing R or RStudio.\nOpen the workshop in Posit Cloud\nAfter opening the project:\n\nSign in to Posit Cloud or create a free account.\nOpen the workshop project.\nSelect Save a Permanent Copy to create your own copy.\nWork through the workshop sections in order.\nComplete the exercises in workshop_exercises.qmd."
+  },
+  {
+    "objectID": "exercises.html#workshop-order",
+    "href": "exercises.html#workshop-order",
+    "title": "Exercise Guidelines",
+    "section": "Workshop Order",
+    "text": "Workshop Order\nWork through the exercises in this order:\nData Exploration → Correlation → Linear Regression → ANOVA → Linear Mixed Model → Nonlinear Regression\nFocus on understanding what the model does, why it is appropriate, and how to interpret the results, rather than memorizing the R code."
   }
 ]
