@@ -1,0 +1,34 @@
+project:
+  type: website
+  render:
+  - "*.qmd"
+  - "!workshop_exercises.qmd"
+
+website:
+  title: "Applied Statistics in R: From Data to Results"
+    
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: exercises.qmd
+        text: Exercises
+
+  sidebar:
+    style: "docked"
+    contents:
+      - section: "Workshop"
+        contents:
+          - 01-data-exploration.qmd
+          - 02-correlation.qmd
+          - 03-linear-regression.qmd
+          - 04-anova.qmd
+          - 05-linear-mixed-model.qmd
+          - 06-nonlinear-regression.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true

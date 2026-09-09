@@ -1,0 +1,41 @@
+{
+  "01-data-exploration.qmd": {
+    "01-data-exploration.html": "28d845c2"
+  },
+  "02-correlation.qmd": {
+    "02-correlation.html": "b7865072"
+  },
+  "03-linear-regression.qmd": {
+    "03-linear-regression.html": "c59de34d"
+  },
+  "04-nonlinear-regression.qmd": {
+    "04-nonlinear-regression.html": "8aa01ed9"
+  },
+  "05-anova.qmd": {
+    "05-anova.html": "fc801bd0"
+  },
+  "about.qmd": {
+    "about.html": "bf77d0d9"
+  },
+  "LMM.qmd": {
+    "LMM.html": "f2eeebfd"
+  },
+  "06-nonlinear-regression.qmd": {
+    "06-nonlinear-regression.html": "d816bfdd"
+  },
+  "04-anova.qmd": {
+    "04-anova.html": "18c6291a"
+  },
+  "05-LMM.qmd": {
+    "05-LMM.html": "e350f32d"
+  },
+  "index.qmd": {
+    "index.html": "03b45859"
+  },
+  "exercises.qmd": {
+    "exercises.html": "4835d42f"
+  },
+  "05-linear-mixed-model.qmd": {
+    "05-linear-mixed-model.html": "b5aff916"
+  }
+}
