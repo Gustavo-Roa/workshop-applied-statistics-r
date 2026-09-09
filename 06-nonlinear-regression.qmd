@@ -12,47 +12,32 @@ editor: source
 
 Regression models describe the relationship between a response variable and one or more explanatory variables.
 
-A **linear regression** describes a relationship using a straight line:
+A linear regression model can include more than a straight-line relationship. For example, a quadratic regression can describe a curved relationship:
 
-$$
-Y_i = \beta_0 + \beta_1X_i + \varepsilon_i
-$$
+$$y = \beta_0 + \beta_1x + \beta_2x^2 + \varepsilon$$
 
-where:
+Although the relationship with $x$ is curved, this is still a linear regression model because the model is linear in its parameters ($\beta_0$, $\beta_1$, and $\beta_2$).
 
-- $Y_i$ is the response variable.
-- $X_i$ is the explanatory variable.
-- $\beta_0$ is the intercept.
-- $\beta_1$ is the slope.
-- $\varepsilon_i$ is the random error.
+A nonlinear regression model is different because the parameters enter the model in a nonlinear way. These models are useful when the biological or agronomic response cannot be adequately described by a standard linear model.
 
-A **nonlinear regression** is useful when a straight line does not adequately describe the relationship between the response and explanatory variable.
+In agronomy, nonlinear response models are commonly used to describe crop responses to fertilizer rates.
 
-Examples of nonlinear response models include:
+In this section, we will focus on two response models:
 
-- **Quadratic:** describes a curved relationship.
-- **Exponential:** describes a response that changes at a changing rate.
-- **Linear-plateau:** describes an increase followed by a plateau.
-- **Quadratic-plateau:** describes a curved response followed by a plateau.
+- **Linear-plateau (LP):** yield increases linearly with fertilizer rate and then reaches a plateau.
+- **Quadratic-plateau (QP):** yield follows a curved quadratic response and then reaches a plateau.
 
-In agronomy, nonlinear models are commonly useful for describing crop responses to fertilizer rates.
-
-In this section, we will focus on two models:
-
-- Linear-plateau (LP)
-- Quadratic-plateau (QP)
+Both models are useful for describing fertilizer response and estimating the rate at which additional fertilizer no longer produces an increase in the modeled response.
 
 # Linear-plateau model
 
 The **linear-plateau (LP)** model assumes that yield increases linearly until a breakpoint and then remains constant.
 
-$$
-Y =
+$$Y =
 \begin{cases}
 \beta_0 + \beta_1X, & X \leq X_0 \\
 Y_0, & X > X_0
-\end{cases}
-$$
+\end{cases}$$
 
 where:
 
@@ -69,13 +54,11 @@ The **breakpoint** represents the estimated sulfur rate where the response reach
 
 The **quadratic-plateau (QP)** model allows the response to curve before reaching the plateau.
 
-$$
-Y =
+$$Y =
 \begin{cases}
 \beta_0 + \beta_1X + \beta_2X^2, & X \leq X_0 \\
 Y_0, & X > X_0
-\end{cases}
-$$
+\end{cases}$$
 
 where $\beta_2$ controls the curvature of the response.
 
@@ -179,9 +162,7 @@ The QP model allows the response to curve before reaching the plateau.
 
 AIC can be used to compare models fitted to the same data.
 
-$$
-AIC = -2\log(L) + 2K
-$$
+$$AIC = -2\log(L) + 2K$$
 
 where:
 
@@ -267,7 +248,7 @@ The fitted curves allow us to visually compare how the LP and QP models describe
 
 Sometimes more than one model provides a reasonable description of the data. **Model averaging** is an approach that combines information from multiple candidate models rather than selecting only one.
 
-We will not perform model averaging in this workshop. 
+We will not perform model averaging in this workshop.
 
 [Model averaging for estimation of optimum rate and critical values under model uncertainty](https://hdl.handle.net/2097/47202)
 
@@ -280,7 +261,7 @@ Fit a linear-plateau model using:
 - `grain_yield_Mg_ha` as the response.
 - `S_rate_kg_ha` as the explanatory variable.
 
-```r
+``` r
 # Fit the linear-plateau model
 model_LP_ex <- nls(
   ____________ ~ SSlinp(
@@ -312,14 +293,13 @@ model_LP_ex <- nls(
 
 summary(model_LP_ex)
 ```
-
 :::
 
 ## Exercise 6.2: Fit the quadratic-plateau model
 
 Fit a quadratic-plateau model using the same variables.
 
-```r
+``` r
 # Fit the quadratic-plateau model
 model_QP_ex <- nls(
   ____________ ~ SSquadp3xs(
@@ -351,14 +331,13 @@ model_QP_ex <- nls(
 
 summary(model_QP_ex)
 ```
-
 :::
 
 ## Exercise 6.3: Compare the models
 
 Use AIC to compare the LP and QP models.
 
-```r
+``` r
 # Compare the models using AIC
 AIC(
   ____________,
@@ -376,18 +355,16 @@ AIC(
   model_QP_ex
 )
 ```
-
 :::
 
 ## Exercise 6.4: Interpret the results
 
 Use the model summaries, AIC results, and fitted curves to answer:
 
-1. Which model has the lower AIC?
-2. What is the estimated breakpoint for each model?
-3. How do the fitted curves differ?
-4. Which model would you use to describe the response, and why?
-
+1.  Which model has the lower AIC?
+2.  What is the estimated breakpoint for each model?
+3.  How do the fitted curves differ?
+4.  Which model would you use to describe the response, and why?
 
 > **Important:** AIC helps compare competing models, but model selection should also consider the shape of the response and its biological meaning.
 
@@ -399,4 +376,3 @@ Use the model summaries, AIC results, and fitted curves to answer:
 - The breakpoint is an important parameter in fertilizer response models.
 - AIC can be used to compare competing models.
 - Model selection should consider both statistical evidence and biological meaning.
-

@@ -4338,43 +4338,26 @@ window.Quarto = {
 <section id="nonlinear-regression" class="level1">
 <h1>Nonlinear Regression</h1>
 <p>Regression models describe the relationship between a response variable and one or more explanatory variables.</p>
-<p>A <strong>linear regression</strong> describes a relationship using a straight line:</p>
-<p><span class="math display">\[
-Y_i = \beta_0 + \beta_1X_i + \varepsilon_i
-\]</span></p>
-<p>where:</p>
+<p>A linear regression model can include more than a straight-line relationship. For example, a quadratic regression can describe a curved relationship:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1x + \beta_2x^2 + \varepsilon\]</span></p>
+<p>Although the relationship with <span class="math inline">\(x\)</span> is curved, this is still a linear regression model because the model is linear in its parameters (<span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>).</p>
+<p>A nonlinear regression model is different because the parameters enter the model in a nonlinear way. These models are useful when the biological or agronomic response cannot be adequately described by a standard linear model.</p>
+<p>In agronomy, nonlinear response models are commonly used to describe crop responses to fertilizer rates.</p>
+<p>In this section, we will focus on two response models:</p>
 <ul>
-<li><span class="math inline">\(Y_i\)</span> is the response variable.</li>
-<li><span class="math inline">\(X_i\)</span> is the explanatory variable.</li>
-<li><span class="math inline">\(\beta_0\)</span> is the intercept.</li>
-<li><span class="math inline">\(\beta_1\)</span> is the slope.</li>
-<li><span class="math inline">\(\varepsilon_i\)</span> is the random error.</li>
+<li><strong>Linear-plateau (LP):</strong> yield increases linearly with fertilizer rate and then reaches a plateau.</li>
+<li><strong>Quadratic-plateau (QP):</strong> yield follows a curved quadratic response and then reaches a plateau.</li>
 </ul>
-<p>A <strong>nonlinear regression</strong> is useful when a straight line does not adequately describe the relationship between the response and explanatory variable.</p>
-<p>Examples of nonlinear response models include:</p>
-<ul>
-<li><strong>Quadratic:</strong> describes a curved relationship.</li>
-<li><strong>Exponential:</strong> describes a response that changes at a changing rate.</li>
-<li><strong>Linear-plateau:</strong> describes an increase followed by a plateau.</li>
-<li><strong>Quadratic-plateau:</strong> describes a curved response followed by a plateau.</li>
-</ul>
-<p>In agronomy, nonlinear models are commonly useful for describing crop responses to fertilizer rates.</p>
-<p>In this section, we will focus on two models:</p>
-<ul>
-<li>Linear-plateau (LP)</li>
-<li>Quadratic-plateau (QP)</li>
-</ul>
+<p>Both models are useful for describing fertilizer response and estimating the rate at which additional fertilizer no longer produces an increase in the modeled response.</p>
 </section>
 <section id="linear-plateau-model" class="level1">
 <h1>Linear-plateau model</h1>
 <p>The <strong>linear-plateau (LP)</strong> model assumes that yield increases linearly until a breakpoint and then remains constant.</p>
-<p><span class="math display">\[
-Y =
+<p><span class="math display">\[Y =
 \begin{cases}
 \beta_0 + \beta_1X, &amp; X \leq X_0 \\
 Y_0, &amp; X &gt; X_0
-\end{cases}
-\]</span></p>
+\end{cases}\]</span></p>
 <p>where:</p>
 <ul>
 <li><span class="math inline">\(Y\)</span> is grain yield.</li>
@@ -4389,13 +4372,11 @@ Y_0, &amp; X &gt; X_0
 <section id="quadratic-plateau-model" class="level1">
 <h1>Quadratic-plateau model</h1>
 <p>The <strong>quadratic-plateau (QP)</strong> model allows the response to curve before reaching the plateau.</p>
-<p><span class="math display">\[
-Y =
+<p><span class="math display">\[Y =
 \begin{cases}
 \beta_0 + \beta_1X + \beta_2X^2, &amp; X \leq X_0 \\
 Y_0, &amp; X &gt; X_0
-\end{cases}
-\]</span></p>
+\end{cases}\]</span></p>
 <p>where <span class="math inline">\(\beta_2\)</span> controls the curvature of the response.</p>
 <p>The QP model can be useful when yield increases rapidly at lower fertilizer rates and the increase becomes smaller as fertilizer rate increases.</p>
 </section>
@@ -4532,9 +4513,7 @@ Achieved convergence tolerance: 1.886e-10</code></pre>
 <section id="compare-the-models" class="level1">
 <h1>Compare the models</h1>
 <p>AIC can be used to compare models fitted to the same data.</p>
-<p><span class="math display">\[
-AIC = -2\log(L) + 2K
-\]</span></p>
+<p><span class="math display">\[AIC = -2\log(L) + 2K\]</span></p>
 <p>where:</p>
 <ul>
 <li><span class="math inline">\(L\)</span> is the likelihood of the model.</li>
