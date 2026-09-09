@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -24,18 +23,9 @@ jobs:
           r-version: '4.6.1'
 
       - name: Install R Dependencies
-        run: |
-          install.packages(c(
-            "tidyverse",
-            "readxl",
-            "lme4",
-            "lmerTest",
-            "emmeans",
-            "multcomp",
-            "nlraa",
-            "corrplot"
-          ))
-        shell: Rscript {0}
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
