@@ -23,6 +23,8 @@ After opening the project:
 3. Select **Save a Permanent Copy** to create your own copy.
 4. Work through the workshop sections in order.
 5. Complete the exercises in `workshop_exercises.qmd`.
+
+
 ## Workshop Order
 
 Work through the exercises in this order:
